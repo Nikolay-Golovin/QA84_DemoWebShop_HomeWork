@@ -32,7 +32,6 @@ public class TestBase {
         click(locator);
        driver.findElement(locator).clear();
        driver.findElement(locator).sendKeys(text);
-
     }
     public void click(By locator) {
         driver.findElement(locator).click();
