@@ -35,6 +35,9 @@ public class CreateAccountTest extends TestBase {
         type(By.name("ConfirmPassword"), "123Q12a!");
         click(By.name("register-button"));
         Assert.assertTrue(isElementPresent(By.cssSelector(".validation-summary-errors")));
+//        Assert.assertTrue(isElementPresent(By.xpath("//*[.='The specified email already exists']")));
+
+
 
     }
 
