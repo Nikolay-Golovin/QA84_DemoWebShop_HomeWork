@@ -16,7 +16,7 @@ public class CreateAccountTest extends TestBase {
         click(By.cssSelector("[href='/register']"));
         type(By.name("FirstName"), "John");
         type(By.name("LastName"), "Doue");
-        type(By.name("Email"), "JohnTesatDoue@mail.de");
+        type(By.name("Email"), "JohnTase2satDoue@mail.de");
         type(By.name("Password"), "123Q12a!");
         type(By.name("ConfirmPassword"), "123Q12a!");
         click(By.name("register-button"));
@@ -34,7 +34,7 @@ public class CreateAccountTest extends TestBase {
         type(By.name("Password"), "123Q12a!");
         type(By.name("ConfirmPassword"), "123Q12a!");
         click(By.name("register-button"));
-        Assert.assertTrue(driver.findElement(By.cssSelector(".validation-summary-errors")).isDisplayed());
+        Assert.assertTrue(isElementPresent(By.cssSelector(".validation-summary-errors")));
 
     }
 
