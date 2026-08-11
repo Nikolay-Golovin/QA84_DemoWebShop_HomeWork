@@ -12,10 +12,34 @@ repositories {
 dependencies {
     implementation('org.seleniumhq.selenium:selenium-java:4.20.0')
     implementation('org.testng:testng:7.10.2')
-    implementation("io.github.bonigarcia:webdrivermanager:6.3.4")
+    implementation('io.github.bonigarcia:webdrivermanager:6.3.4')
 }
 
 test {
     useTestNG()
-
 }
+
+
+
+task qa(type: Test) {
+    useTestNG()
+
+    // Передаем путь к откомпилированным классам тестов и зависимостям
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+
+    // Отключаем кэширование результатов, чтобы тесты всегда запускались
+    outputs.upToDateWhen { false }
+
+    if (project.hasProperty("browser")) {
+        systemProperty 'browser', "${browser}"
+    }
+}
+
+//task qa(type: Test) {
+//   useTestNG()
+//   outputs.upToDateWhen { false } // Принудительный запуск при каждом вызове
+//    if (project.hasProperty("browser")) {
+//       systemProperty 'browser', "${browser}"
+//   }
+//}
