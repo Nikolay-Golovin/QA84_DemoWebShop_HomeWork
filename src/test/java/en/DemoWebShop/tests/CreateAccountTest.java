@@ -13,19 +13,27 @@ public class CreateAccountTest extends TestBase {
     @Test
     public void newUserRegisterPositiveTest(){
         app.getUserHelper().ClockOnRegisterLick();
-        app.getUserHelper().fillLoginRegisterForm(new de.DemoWebShop.model.User().setEmail( app.getUserHelper().newEmail()).setPassword("123Q12a!").setConfirmPassword("123Q12a!").setFirstName("John").setLastName("Doue"));
+        app.getUserHelper().fillLoginRegisterForm(new de.DemoWebShop.model.User().setEmail( app.getUserHelper().
+                newEmail()).
+                setPassword("123Q12a!").
+                setConfirmPassword("123Q12a!").
+                setFirstName("John").
+                setLastName("Doue"));
         app.getUserHelper().clickOnRegisterButton();
         Assert.assertTrue( app.getUserHelper().isLogOutButtonPresent());
-
     }
 
     @Test
     public void existedUserRegisterNegativeTest(){
         app.getUserHelper().ClockOnRegisterLick();
-        app.getUserHelper().fillLoginRegisterForm(new de.DemoWebShop.model.User().setEmail("JohnTesatDoue@mail.de").setPassword("123Q12a!").setConfirmPassword("123Q12a!").setFirstName("John").setLastName("Doue"));
+        app.getUserHelper().fillLoginRegisterForm(new de.DemoWebShop.
+                model.User().
+                setEmail("JohnTesatDoue@mail.de").
+                setPassword("123Q12a!").
+                setConfirmPassword("123Q12a!").
+                setFirstName("John").
+                setLastName("Doue"));
         app.getUserHelper().clickOnRegisterButton();
         Assert.assertTrue( app.getUserHelper().isAlreadyExistsPresent());
-
     }
-
 }
