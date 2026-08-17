@@ -9,6 +9,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
+import java.lang.reflect.Method;
+
 public class TestBase extends ApplicationManager {
 
 
@@ -32,8 +34,8 @@ public class TestBase extends ApplicationManager {
     }
 
     @BeforeMethod
-    public void startTest() {
-        logger.info("Start test");
+    public void startTest(Method method){
+        logger.info("Start test {}",method.getName());
     }
     @AfterMethod
     public void stopTest(){
