@@ -28,7 +28,7 @@ task qa(type: Test) {
     testClassesDirs = sourceSets.test.output.classesDirs
     classpath = sourceSets.test.runtimeClasspath
 
-    // Отключаем кэширование результатов, чтобы тесты всегда запускались
+    // Отключаем кэширование результатов чтобы тесты всегда запускались
     outputs.upToDateWhen { false }
 
     if (project.hasProperty("browser")) {
@@ -51,7 +51,7 @@ def registerTask(String taskName, String suitePath) {
     }
 }
 
-// Регистрация таски:
+// Регистрация таски
 registerTask('quickTest', 'src/test/resources/quick.xml')
 
 //task qa(type: Test) {
