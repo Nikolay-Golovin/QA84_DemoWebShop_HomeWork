@@ -35,6 +35,24 @@ task qa(type: Test) {
         systemProperty 'browser', "${browser}"
     }
 }
+def registerTask(String taskName, String suitePath) {
+    tasks.register(taskName, Test) {
+
+        testClassesDirs = sourceSets.test.output.classesDirs
+        classpath = sourceSets.test.runtimeClasspath
+
+        useTestNG() {
+            suites suitePath
+        }
+
+        if (project.hasProperty("browser")) {
+            systemProperty 'browser', project.property("browser")
+        }
+    }
+}
+
+// Регистрация таски:
+registerTask('quickTest', 'src/test/resources/quick.xml')
 
 //task qa(type: Test) {
 //   useTestNG()
