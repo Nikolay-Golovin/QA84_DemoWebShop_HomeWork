@@ -24,7 +24,7 @@ public class UserHelper extends BaseHelper {
         type(By.name("ConfirmPassword"), user.getConfirmPassword());
     }
 
-    public void ClockOnRegisterLick() {
+    public void clockOnRegisterLick() {
         click(By.cssSelector("[href='/register']"));
     }
     public String newEmail(){

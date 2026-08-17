@@ -12,7 +12,7 @@ public class CreateAccountTest extends TestBase {
 
     @Test
     public void newUserRegisterPositiveTest(){
-        app.getUserHelper().ClockOnRegisterLick();
+        app.getUserHelper().clockOnRegisterLick();
         app.getUserHelper().fillLoginRegisterForm(new de.DemoWebShop.model.User().setEmail( app.getUserHelper().
                 newEmail()).
                 setPassword("123Q12a!").
@@ -25,7 +25,7 @@ public class CreateAccountTest extends TestBase {
 
     @Test
     public void existedUserRegisterNegativeTest(){
-        app.getUserHelper().ClockOnRegisterLick();
+        app.getUserHelper().clockOnRegisterLick();
         app.getUserHelper().fillLoginRegisterForm(new de.DemoWebShop.
                 model.User().
                 setEmail("JohnTesatDoue@mail.de").
