@@ -45,13 +45,14 @@ public class TestBase extends ApplicationManager {
     public void stopTest(ITestResult result){
 
         if (result.isSuccess()){
-            logger.info("PASSED: {}",result.getMethod().getMethodName());
+            logger.info("PASSED -->> {}",result.getMethod().getMethodName());
         }else {
-            logger.error("FAILED: {}. Screenshot - > {}",
+            logger.error("FAILED -->>{}. Screenshot  -->> {}",
                     result.getMethod().getMethodName(),
                     app.getUserHelper().takeScreenshot());
         }
 logger.info("Stop test");
+        System.out.println("**********************");
 }}
 
 

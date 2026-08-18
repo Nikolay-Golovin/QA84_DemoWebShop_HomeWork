@@ -1,11 +1,13 @@
 package en.DemoWebShop.tests;
 import de.DemoWebShop.data.UserData;
+import de.DemoWebShop.model.User;
 import en.DemoWebShop.core.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.*;
+import java.lang.foreign.PaddingLayout;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -31,7 +33,11 @@ public class CreateAccountTest extends TestBase {
     }
 
     @Test(dataProvider = "userNameDataFromCSV")
-    public void existedUserRegisterNegativeTest(String firstName, String lastName){
+    public void existedUserRegisterNegativeTest(String firstName, String lastName)
+    // тут мы тип просто добовляем две переменные которые считываються с лево на права там с файла в массив . со списка лиск читаем именна
+
+    {
+
         app.getUserHelper().clockOnRegisterLick();
         app.getUserHelper().fillLoginRegisterForm(new de.DemoWebShop.
                 model.User().
@@ -51,14 +57,14 @@ public class CreateAccountTest extends TestBase {
       BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contact.csv")));
 {
              String line = reader.readLine();
-
-
             while (line != null) {
-                String[] split = line.split(",");
+                String[] split = line.split(",");//
 
-                list.add(new Object[]{ split[0], split[1] });
+                list.add(new Object[]{ (split[0]), split[1] });// тут мы упоковываем два элемента в массив ..Добовляем этот масив в список лиск
 
                 line = reader.readLine();
+
+                       line = reader.readLine();
             }
         }
         return list.iterator();
