@@ -40,13 +40,19 @@ public class TestBase extends ApplicationManager {
         logger.info("Start test {}",method.getName());
     }
     @AfterMethod //ITestResult интерфейс в тестовом фреймворке TestNG, который содержит всю информацию о результатах выполнения конкретного тестового метода.
-    public void stopTest(ITestResult result){
-        logger.info("Test->> {} Status->> {}",
-                result.getMethod().getMethodName(),
-                result.isSuccess() ? "PASSED" : "FAILED");;
-    }
 
-}
+
+    public void stopTest(ITestResult result){
+
+        if (result.isSuccess()){
+            logger.info("PASSED: {}",result.getMethod().getMethodName());
+        }else {
+            logger.error("FAILED: {}. Screenshot - > {}",
+                    result.getMethod().getMethodName(),
+                    app.getUserHelper().takeScreenshot());
+        }
+logger.info("Stop test");
+}}
 
 
 

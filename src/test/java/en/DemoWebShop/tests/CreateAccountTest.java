@@ -1,7 +1,14 @@
 package en.DemoWebShop.tests;
+import de.DemoWebShop.data.UserData;
 import en.DemoWebShop.core.TestBase;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class CreateAccountTest extends TestBase {
 
@@ -15,25 +22,45 @@ public class CreateAccountTest extends TestBase {
         app.getUserHelper().clockOnRegisterLick();
         app.getUserHelper().fillLoginRegisterForm(new de.DemoWebShop.model.User().setEmail( app.getUserHelper().
                 newEmail()).
-                setPassword("123Q12a!").
-                setConfirmPassword("123Q12a!").
+                setPassword(UserData.PASSWORD).
+                setConfirmPassword(UserData.CONPASSWORD).
                 setFirstName("John").
                 setLastName("Doue"));
         app.getUserHelper().clickOnRegisterButton();
         Assert.assertTrue( app.getUserHelper().isLogOutButtonPresent());
     }
 
-    @Test
-    public void existedUserRegisterNegativeTest(){
+    @Test(dataProvider = "userNameDataFromCSV")
+    public void existedUserRegisterNegativeTest(String firstName, String lastName){
         app.getUserHelper().clockOnRegisterLick();
         app.getUserHelper().fillLoginRegisterForm(new de.DemoWebShop.
                 model.User().
-                setEmail("JohnTesatDoue@mail.de").
-                setPassword("123Q12a!").
-                setConfirmPassword("123Q12a!").
-                setFirstName("John").
-                setLastName("Doue"));
+                setEmail(UserData.EMAIL).
+                setPassword(UserData.PASSWORD).
+                setConfirmPassword(UserData.PASSWORD).
+                setFirstName(firstName).
+                setLastName(lastName));
         app.getUserHelper().clickOnRegisterButton();
         Assert.assertTrue( app.getUserHelper().isAlreadyExistsPresent());
+    }
+
+    @DataProvider
+    public Iterator<Object[]> userNameDataFromCSV() throws IOException {
+        List<Object[]> list = new ArrayList<>();
+
+      BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contact.csv")));
+{
+             String line = reader.readLine();
+
+
+            while (line != null) {
+                String[] split = line.split(",");
+
+                list.add(new Object[]{ split[0], split[1] });
+
+                line = reader.readLine();
+            }
+        }
+        return list.iterator();
     }
 }
