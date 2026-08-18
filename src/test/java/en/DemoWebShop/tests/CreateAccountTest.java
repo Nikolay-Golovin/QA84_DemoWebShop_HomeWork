@@ -54,16 +54,11 @@ public class CreateAccountTest extends TestBase {
         List<Object[]> list = new ArrayList<>();
 
       BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contact.csv")));
-{
-             String line = reader.readLine();
+{           String line = reader.readLine();
             while (line != null) {
-                String[] split = line.split(",");//
-
+                String[] split = line.split(",");//раздел пор запятой ...
                 list.add(new Object[]{ (split[0]), split[1] });// тут мы упоковываем два элемента в массив ..Добовляем этот масив в список лиск
-
-                line = reader.readLine();
-
-                       line = reader.readLine();
+                            line = reader.readLine();
             }
         }
         return list.iterator();
