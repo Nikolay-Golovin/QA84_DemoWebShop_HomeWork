@@ -38,7 +38,7 @@ public class TestBase extends ApplicationManager {
     @BeforeMethod
     public void startTest(Method method){
         logger.info("**********************");
-        logger.info("Start  <------> Test  {}",method.getName());
+        logger.info("Start  <------> TestNAME  {}",method.getName());
     }
     @AfterMethod //ITestResult интерфейс в тестовом фреймворке TestNG, который содержит всю информацию о результатах выполнения конкретного тестового метода.
 
@@ -47,9 +47,9 @@ public class TestBase extends ApplicationManager {
 
         if (result.isSuccess()){
 
-            logger.info("PASSED<------>{}",result.getMethod().getMethodName());
+            logger.info(" TEST ------>{} PASSED ",result.getMethod().getMethodName());
         }else {
-            logger.error("FAILED<------>{}. Screenshot ->->->-> {}",
+            logger.error(" TEST ------>{} FAILED. Screenshot ->->->-> {}",
                     result.getMethod().getMethodName(),
                     app.getUserHelper().takeScreenshot());
         }
