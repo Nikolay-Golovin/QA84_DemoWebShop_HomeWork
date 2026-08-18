@@ -49,6 +49,7 @@ public class CreateAccountTest extends TestBase {
         Assert.assertTrue( app.getUserHelper().isAlreadyExistsPresent());
     }
 
+
     @DataProvider
     public Iterator<Object[]> userNameDataFromCSV() throws IOException {
         List<Object[]> list = new ArrayList<>();
