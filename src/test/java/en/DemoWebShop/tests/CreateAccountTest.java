@@ -7,7 +7,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.*;
-import java.lang.foreign.PaddingLayout;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,15 +18,15 @@ public class CreateAccountTest extends TestBase {
         super(browser);
     }
 
-    @Test
-    public void newUserRegisterPositiveTest(){
+    @Test(dataProvider = "userNameDataFromCSV")
+    public void newUserRegisterPositiveTest(String firstName, String lastName){
         app.getUserHelper().clockOnRegisterLick();
         app.getUserHelper().fillLoginRegisterForm(new de.DemoWebShop.model.User().setEmail( app.getUserHelper().
                 newEmail()).
                 setPassword(UserData.PASSWORD).
                 setConfirmPassword(UserData.CONPASSWORD).
-                setFirstName("John").
-                setLastName("Doue"));
+                setFirstName(firstName).
+                setLastName(lastName));
         app.getUserHelper().clickOnRegisterButton();
         Assert.assertTrue( app.getUserHelper().isLogOutButtonPresent());
     }
